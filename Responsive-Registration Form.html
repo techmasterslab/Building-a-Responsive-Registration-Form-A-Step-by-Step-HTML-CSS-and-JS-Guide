@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Responsive Registration Form</title>
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0"/>
+   <style>
+   
+   @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: -webkit-linear-gradient(left, #5f2c82, #49a09d);
+  background-size: cover;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 650px;
+  background: rgba(243, 242, 242, 0.5);
+  padding: 28px;
+  margin: 0 28px;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 600;
+  text-align: center;
+  padding-bottom: 6px;
+  color: white;
+  border-bottom: solid 1px white;
+}
+
+.info-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.input-field:nth-child(2n) {
+  justify-content: end;
+}
+
+.input-field {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  padding-bottom: 15px;
+}
+
+.input-field label {
+  width: 95%;
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 5px 0;
+}
+
+.input-field input {
+  height: 40px;
+  width: 95%;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid grey;
+  padding: 0 10px;
+}
+
+.gender-label {
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  border-bottom: 1px solid white;
+}
+
+.gender-group {
+  margin: 15px 0;
+  color: white;
+}
+
+.gender-group label {
+  padding: 0 20px 0 5px;
+}
+
+.gender-group label,
+.gender-group input,
+.submit-button input {
+  cursor: pointer;
+}
+
+.submit-button {
+  margin-top: 40px;
+}
+
+.submit-button input {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  color: rgb(255, 255, 255);
+  background: -webkit-linear-gradient(left, #5f2c82, #49a09d);
+}
+
+.submit-button input:hover {
+  background: -webkit-linear-gradient(left, #5f2c82, #49a09d, #5f2c82, #49a09d);
+  color: rgb(255, 255, 255);
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    min-width: 280px;
+  }
+
+  .input-field {
+    margin-bottom: 12px;
+    width: 100%;
+  }
+
+  .input-field:nth-child(2n) {
+    justify-content: space-between;
+  }
+
+  .gender-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .info-section {
+    max-height: 380px;
+    overflow: auto;
+  }
+
+  .info-section::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+</style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1 class="title">Registration</h1>
+      <form action="#">
+        <div class="info-section">
+          <div class="input-field">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter Full Name" />
+          </div>
+          <div class="input-field">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter Username" />
+          </div>
+          <div class="input-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter Email" />
+          </div>
+          <div class="input-field">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number" />
+          </div>
+          <div class="input-field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter Password" />
+          </div>
+          <div class="input-field">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
+          </div>
+        </div>
+        <div class="gender-details-box">
+          <span class="gender-label">Gender</span>
+          <div class="gender-group">
+            <input type="radio" name="gender" id="male">
+            <label for="male">Male</label>
+            <input type="radio" name="gender" id="female">
+            <label for="female">Female</label>
+            <input type="radio" name="gender" id="other">
+            <label for="other">Other</label>
+          </div>
+        </div>
+        <div class="submit-button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const form = document.querySelector("form");
+    
+        form.addEventListener("submit", function(event) {
+          // Prevent the form from submitting
+          event.preventDefault();
+    
+          // Validate email
+          const email = document.getElementById("email").value;
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address.");
+            return;
+          }
+    
+          // Validate phone number (only numbers)
+          const phoneNumber = document.getElementById("phoneNumber").value;
+          const phonePattern = /^\d+$/;
+          if (!phonePattern.test(phoneNumber)) {
+            alert("Phone number must contain only numbers.");
+            return;
+          }
+    
+          // Validate password match
+          const password = document.getElementById("password").value;
+          const confirmPassword = document.getElementById("confirmPassword").value;
+          if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return;
+          }
+    
+          // If all validations pass, submit the form
+          form.submit();
+        });
+      });
+    </script>
+    
+  </body>
+  </html>
